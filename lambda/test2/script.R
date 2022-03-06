@@ -27,12 +27,8 @@ handler <- function(var_name, operator, value, result_file = NULL){
     result_file = NA
   }
 
-  body <- list(number_of_rows = nrow(data),
-               result_file = result_file)
+  return_data <- list(number_of_rows = nrow(data),
+                      result_file = result_file)
     
-  l <- list(statusCode = 200,
-            header = list("Content-Type" = "application/json"),
-            body = body)
-
-  return(l)          
+  return(return_data)          
 }
