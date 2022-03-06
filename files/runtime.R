@@ -28,8 +28,8 @@ post_error <- function(error, url) {
   
   res <- httr::POST(url,
               add_headers("Lambda-Runtime-Function-Error-Type" = "Unhandled"),
-              body = error_to_payload(error),
-              encode = "json")
+              body = jsonlite::toJSON(error_to_payload(error), auto_unbox = TRUE),
+              encode = "raw")
 
   error_log <- glue::glue_collapse(error_to_payload(error), sep="\n")
 
