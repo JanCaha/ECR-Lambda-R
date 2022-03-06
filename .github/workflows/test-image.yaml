@@ -19,7 +19,7 @@ jobs:
           architecture: 'x64'
       
       - name: Install Pytest
-        run: pip install -U pytest
+        run: pip install -U pytest requests typing
           
       - name: Check out the repo
         uses: actions/checkout@v2
