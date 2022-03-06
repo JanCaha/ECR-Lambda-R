@@ -30,7 +30,7 @@ jobs:
       - name: Run container
         run: docker run -d -p 9000:8080 --name lambda-r cahik/ecr-lambda-r:v1
       
-      - name: Run Python Tests
+      - name: Run Python Tests for lambda/test
         run: |
           pytest python_tests/test_lambda_test.py
 
@@ -42,7 +42,7 @@ jobs:
       - name: Run container
         run: docker run -d -p 9000:8080 --workdir="/lambda/test2" --name lambda-r cahik/ecr-lambda-r:v1 script.handler
       
-      - name: Run Python Tests
+      - name: Run Python Tests for lambda/test2
         run: |
           pytest python_tests/test_lambda_test2.py
 
