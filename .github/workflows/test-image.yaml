@@ -15,12 +15,12 @@ jobs:
 
       - name: Check out the repo
         uses: actions/checkout@v2
-        
-      - name: Build container
-        run: docker build -t lambda-r-ubuntu .
+
+      - name: Pull container
+        run: docker pull cahik/ecr-lambda-r:v1
 
       - name: Run container
-        run: docker run -d -p 9000:8080 --name lambda-r lambda-r-ubuntu
+        run: docker run -d -p 9000:8080 --name lambda-r cahik/ecr-lambda-r:v1
       
       - name: Test call
         run: |
