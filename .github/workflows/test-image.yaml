@@ -1,0 +1,34 @@
+name: Publish Docker image
+
+on:
+  push
+
+jobs:
+  
+  test-lambda-functions:
+
+    name: Test lambda functions
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check out the repo
+        uses: actions/checkout@v2
+        
+      - name: Build container
+        run: docker build -t lambda-r-ubuntu .
+
+      - name: Run container
+        run: docker run -d -p 9000:8080 --name lambda-r lambda-r-ubuntu
+      
+      - name: Test call
+        run: |
+          curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"x": 1}'
+
+      - name: Test call
+        run: |
+          curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"x": "a"}'
+      
+      - name: Stop container
+        run: docker stop lambda-r
