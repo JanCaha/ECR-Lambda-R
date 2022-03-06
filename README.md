@@ -54,7 +54,7 @@ The second example is significantly more complex function. It expects three nece
 The result from the functions are **number_of_rows** and **result_file**. **number_of_rows** specifies number of rows in result of the query and **result_file** returns location of the file (if it was provided) or `null`.
 
 The results from the function look like this:
- 
+
 ```bash
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"var_name": "mpg", "operator": ">", "value": 20}'
 >{"statusCode":200,"header":{"Content-Type":"application/json"},"body":{"number_of_rows":14,"result_file":null}}
@@ -62,7 +62,7 @@ curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d
 
 ```bash
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"var_name": "mpg", "operator": ">", "value": 20, "result_file": "a.csv"}'
->{"errorMessage":"Error in handler(var_name = \"mpg\", operator = \">\", value = 20L, result_file = \"a.csv\"): The address `a.csv` does not look like S3 address. Cannot save to file.\n","errorType":"simpleError"
+>{"errorMessage":"Error in handler(var_name = \"mpg\", operator = \">\", value = 20L, result_file = \"a.csv\"): The address `a.csv` does not look like S3 address. Cannot save to file.\n","errorType":"simpleError"}
 ```
 
 ```bash
