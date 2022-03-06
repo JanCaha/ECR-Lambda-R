@@ -35,8 +35,10 @@ jobs:
           pytest python_tests/test_lambda_test.py
 
       - name: Stop container
-        run: docker stop lambda-r
-      
+        run: |
+          docker stop lambda-r
+          docker rm lambda-r
+
       - name: Run container
         run: docker run -d -p 9000:8080 --workdir="/lambda/test2" --name lambda-r cahik/ecr-lambda-r:v1 script.handler
       
@@ -45,4 +47,6 @@ jobs:
           pytest python_tests/test_lambda_test2.py
 
       - name: Stop container
-        run: docker stop lambda-r
+        run: |
+          docker stop lambda-r
+          docker rm lambda-r
